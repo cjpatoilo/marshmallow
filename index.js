@@ -4,7 +4,7 @@ const rasper = require('rasper')
 const { Markdown } = require('markdown-to-html')
 const { outputFile } = require('fs-extra')
 const { version } = require('./package.json')
-const { error, info, warn } = console
+const { error, info } = console
 
 const markdown = new Markdown()
 const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
@@ -14,6 +14,7 @@ if (require.main === module) marshmallow(options)
 function marshmallow (options = {}) {
 	const config = getConfig(options)
 
+	helpers(config)
 	check(config)
 	parse(config)
 }
@@ -36,9 +37,10 @@ ${data}
 </div>
 </body>
 </html>
-	`.replaceAll('\n\n', '')
-	.replaceAll(config.minify, '')
-	.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
+	`
+		.replaceAll('\n\n', '')
+		.replaceAll(config.minify, '')
+		.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
 
 	outputFile(config.output, html)
 }
