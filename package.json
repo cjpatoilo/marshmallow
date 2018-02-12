@@ -1,6 +1,6 @@
 {
 	"name": "marshmallow",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "README Parser – easy as marshmallow!",
 	"homepage": "https://cjpatoilo.com/marshmallow",
 	"repository": "cjpatoilo/marshmallow",
@@ -38,6 +38,7 @@
 		"node": ">=6"
 	},
 	"scripts": {
+		"build": "node index --output docs",
 		"precommit": "npm t",
 		"test": "nyc ava && eslint . -c styled --ignore-path .gitignore && editorconfig-tools check ."
 	}
