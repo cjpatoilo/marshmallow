@@ -1,0 +1,17 @@
+{
+	"name": "marshmallow",
+	"version": "0.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "CJ Patoilo <cjpatoilo@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"fs-extra": "^5.0.0",
+		"markdown-to-html": "0.0.13",
+		"rasper": "^0.2.0"
+	}
+}
