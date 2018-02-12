@@ -38,6 +38,7 @@
 		"node": ">=6"
 	},
 	"scripts": {
+		"build": "node index --output docs",
 		"precommit": "npm t",
 		"test": "nyc ava && eslint . -c styled --ignore-path .gitignore && editorconfig-tools check ."
 	}
