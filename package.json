@@ -24,7 +24,7 @@
 	"dependencies": {
 		"fs-extra": "^5.0.0",
 		"markdown-to-html": "0.0.13",
-		"rasper": "^0.2.0"
+		"rasper": "*"
 	},
 	"devDependencies": {
 		"ava": "^0.25.0",
