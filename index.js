@@ -4,7 +4,7 @@ const rasper = require('rasper')
 const { Markdown } = require('markdown-to-html')
 const { outputFile } = require('fs-extra')
 const { version } = require('./package.json')
-const { error, info } = console
+const { error, info, warn } = console
 
 const markdown = new Markdown()
 const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
@@ -14,69 +14,6 @@ if (require.main === module) marshmallow(options)
 function marshmallow (options = {}) {
 	const config = getConfig(options)
 
-	helpers(config)
-	check(config)
-	parse(config)
-}
-
-function generate (data, config) {
-	const html = `
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
-<title>[name]</title>
-<base href="/">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
-<style>h2{font-size:2.8rem;line-height:1.3;}h2:nth-child(n+1){margin-top:15.0rem;}.container{max-width:80.0rem;}</style>
-</head>
-<body>
-<div class="container">
-${data}
-</div>
-</body>
-</html>
-	`
-		.replaceAll('\n\n', '')
-		.replaceAll(config.minify, '')
-		.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
-
-	outputFile(config.output, html)
-}
-
-function parse (config) {
-	markdown.bufmax = 2048
-	markdown.render(config.readme, {}, err => err ? error(err) : markdown.on('data', data => generate(data, config)))
-}
-
-function check (config) {
-	if (!existsSync(config.readme)) {
-		error('[error] README.md no exist!')
-		process.exit(2)
-	}
-
-	if (existsSync(config.output)) {
-		error('[error] File output exist!')
-		process.exit(2)
-	}
-}
-
-function output (value) {
-	return extname(value).length ? resolve(value) : resolve(value, 'index.html')
-}
-
-function getConfig (options = {}) {
-	options.help = options.help || options.h || false
-	options.version = options.version || options.v || false
-	options.output = output(options.output || options.o || 'index.html')
-	options.readme = options.readme || options.r || 'README.md'
-	options.minify = options.minify || options.m ? '\n' : ''
-
-	return options
-}
-
-function helpers (config) {
 	if (config.help) {
 		info(`
 Usage:
@@ -101,8 +38,66 @@ Default settings when no options:
 	}
 
 	if (config.version) {
-		info(version)
+		info('v' + version)
 		process.exit(2)
+	}
+
+	if (!existsSync(config.readme)) {
+		error('[error] README.md no exist!')
+		process.exit(2)
+	}
+
+	if (existsSync(config.output)) {
+		warn('[warn] File output exist!')
+		process.exit(2)
+	}
+
+	parse(config)
+}
+
+function generate (data, config) {
+	const html = `
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
+<title>[name]</title>
+<base href="/">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
+<style>h2{font-size:2.8rem;line-height:1.3;}h2:nth-child(n+1){margin-top:15.0rem;}.container{max-width:80.0rem;}</style>
+</head>
+<body>
+<div class="container">
+${data}
+</div>
+</body>
+</html>
+	`
+		.replaceAll('\n\n', '')
+		.replaceAll(config.minify, '')
+		.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
+
+	outputFile(config.output, html)
+}
+
+function parse (config) {
+	markdown.bufmax = 2048
+	markdown.render(config.readme, {}, err => err ? error(err) : markdown.on('data', data => generate(data, config)))
+}
+
+function output (value) {
+	return extname(value).length ? resolve(value) : resolve(value, 'index.html')
+}
+
+function getConfig (options = {}) {
+	return {
+		help: options.help || options.h || false,
+		version: options.version || options.v || false,
+		output: output(options.output || options.o || 'index.html'),
+		readme: options.readme || options.r || 'README.md',
+		minify: options.minify || options.m ? '\n' : ''
 	}
 }
 
