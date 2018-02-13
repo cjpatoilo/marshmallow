@@ -4,7 +4,7 @@ const rasper = require('rasper')
 const { Markdown } = require('markdown-to-html')
 const { outputFile } = require('fs-extra')
 const { version } = require('./package.json')
-const { error, info } = console
+const { error, info, warn } = console
 
 const markdown = new Markdown()
 const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
@@ -14,8 +14,44 @@ if (require.main === module) marshmallow(options)
 function marshmallow (options = {}) {
 	const config = getConfig(options)
 
-	helpers(config)
-	check(config)
+	if (config.help) {
+		info(`
+Usage:
+  $ marshmallow [<options>]
+
+Options:
+  -h, --help              Display help information
+  -v, --version           Output Initify version
+  -o, --output            Set output
+  -r, --readme            Set README.md file
+  -m, --minify            Set description
+
+Examples:
+  $ marshmallow
+  $ marshmallow --output documentation // index.html
+  $ marshmallow --output docs/index.html
+
+Default settings when no options:
+  $ marshmallow --output index.html --readme README.md --minify true
+		`)
+		process.exit(2)
+	}
+
+	if (config.version) {
+		info('v' + version)
+		process.exit(2)
+	}
+
+	if (!existsSync(config.readme)) {
+		error('[error] README.md no exist!')
+		process.exit(2)
+	}
+
+	if (existsSync(config.output)) {
+		warn('[warn] File output exist!')
+		process.exit(2)
+	}
+
 	parse(config)
 }
 
@@ -51,59 +87,17 @@ function parse (config) {
 	markdown.render(config.readme, {}, err => err ? error(err) : markdown.on('data', data => generate(data, config)))
 }
 
-function check (config) {
-	if (!existsSync(config.readme)) {
-		error('[error] README.md no exist!')
-		process.exit(2)
-	}
-
-	if (existsSync(config.output)) {
-		error('[error] File output exist!')
-		process.exit(2)
-	}
-}
-
 function output (value) {
 	return extname(value).length ? resolve(value) : resolve(value, 'index.html')
 }
 
 function getConfig (options = {}) {
-	options.help = options.help || options.h || false
-	options.version = options.version || options.v || false
-	options.output = output(options.output || options.o || 'index.html')
-	options.readme = options.readme || options.r || 'README.md'
-	options.minify = options.minify || options.m ? '\n' : ''
-
-	return options
-}
-
-function helpers (config) {
-	if (config.help) {
-		info(`
-Usage:
-  $ marshmallow [<options>]
-
-Options:
-  -h, --help              Display help information
-  -v, --version           Output Initify version
-  -o, --output            Set output
-  -r, --readme            Set README.md file
-  -m, --minify            Set description
-
-Examples:
-  $ marshmallow
-  $ marshmallow --output documentation // index.html
-  $ marshmallow --output docs/index.html
-
-Default settings when no options:
-  $ marshmallow --output index.html --readme README.md --minify true
-		`)
-		process.exit(2)
-	}
-
-	if (config.version) {
-		info(version)
-		process.exit(2)
+	return {
+		help: options.help || options.h || false,
+		version: options.version || options.v || false,
+		output: output(options.output || options.o || 'index.html'),
+		readme: options.readme || options.r || 'README.md',
+		minify: options.minify || options.m ? '\n' : ''
 	}
 }
 
