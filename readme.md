@@ -2,6 +2,14 @@
 
 > README Parser – easy as marshmallow!
 
+[![Travis Status](https://travis-ci.org/cjpatoilo/marshmallow.svg?branch=master)](https://travis-ci.org/cjpatoilo/marshmallow?branch=master)
+[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/rq1lwhaea31u7sq9?svg=true)](https://ci.appveyor.com/project/cjpatoilo/marshmallow)
+[![Codacy Status](https://img.shields.io/codacy/grade/e5fa9acbf7b14b92bdeef938112e4e3d/master.svg)](https://www.codacy.com/app/cjpatoilo/marshmallow/dashboard)
+[![Dependencies Status](https://david-dm.org/cjpatoilo/marshmallow/status.svg)](https://david-dm.org/cjpatoilo/marshmallow)
+[![Version Status](https://badge.fury.io/js/marshmallow.svg)](https://www.npmjs.com/package/marshmallow)
+[![Download Status](https://img.shields.io/npm/dt/marshmallow.svg)](https://www.npmjs.com/package/marshmallow)
+[![Gitter Chat](https://img.shields.io/badge/gitter-join_the_chat-4cc61e.svg)](https://gitter.im/cjpatoilo/marshmallow)
+
 
 ## Why it's awesome
 
