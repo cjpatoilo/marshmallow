@@ -48,6 +48,7 @@ npx marshmallow
 		-o, --output            Set output
 		-r, --readme            Set README.md file
 		-m, --minify            Set description
+		-f, --force             Force overwrite
 
 	Examples:
 		$ marshmallow

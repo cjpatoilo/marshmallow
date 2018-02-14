@@ -24,7 +24,8 @@ Options:
   -v, --version           Output Initify version
   -o, --output            Set output
   -r, --readme            Set README.md file
-  -m, --minify            Set description
+  -m, --minify            Minify HTML
+  -f, --force             Force overwrite
 
 Examples:
   $ marshmallow
@@ -47,7 +48,7 @@ Default settings when no options:
 		process.exit(2)
 	}
 
-	if (existsSync(config.output)) {
+	if (!config.force && existsSync(config.output)) {
 		warn('[warn] File output exist!')
 		process.exit(2)
 	}
@@ -97,7 +98,8 @@ function getConfig (options = {}) {
 		version: options.version || options.v || false,
 		output: output(options.output || options.o || 'index.html'),
 		readme: options.readme || options.r || 'README.md',
-		minify: options.minify || options.m ? '\n' : ''
+		minify: options.minify || options.m ? '\n' : '',
+		force: options.force || options.f
 	}
 }
 
