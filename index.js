@@ -142,7 +142,7 @@ function parse (config) {
 }
 
 function output (value) {
-	return extname(value).length ? resolve(value) : resolve(value, 'index.html')
+	return extname(value).length ? resolve(dirname(value), 'index.html') : resolve(value, 'index.html')
 }
 
 function getConfig (options = {}) {
