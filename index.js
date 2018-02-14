@@ -21,9 +21,11 @@ function marshmallow (options = {}) {
 	if (config.help) {
 		info(`
 Usage:
+
   $ marshmallow [<options>]
 
 Options:
+
   -h, --help              Display help information
   -v, --version           Output version
   -o, --output            Set output
@@ -35,11 +37,13 @@ Options:
   -f, --force             Force overwrite
 
 Examples:
+
   $ marshmallow
   $ marshmallow --output documentation // index.html
   $ marshmallow --output docs/index.html
 
 Default settings when no options:
+
   $ marshmallow --output index.html --readme README.md --minify true
 		`)
 		process.exit(2)
