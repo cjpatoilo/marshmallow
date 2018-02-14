@@ -42,8 +42,7 @@
 		"node": ">=6"
 	},
 	"scripts": {
-		"docs": "node index -o docs -i artwork.psd -m -f && boeing docs && rimraf docs",
-		"prepush": "npm run docs",
+		"prepush": "node index -o docs -i artwork.psd -f && boeing docs && rimraf docs",
 		"precommit": "npm t",
 		"test": "nyc ava && eslint . -c styled --ignore-path .gitignore && editorconfig-tools check ."
 	}
