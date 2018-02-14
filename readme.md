@@ -22,7 +22,7 @@ $ npm install marshmallow
 $ yarn add marshmallow
 ```
 
-**Run with npx (without installing!):**
+**Run with npx (without installing!)**
 
 ```sh
 npx marshmallow
