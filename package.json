@@ -15,6 +15,7 @@
 		"github"
 	],
 	"ignore": [
+		"artwork.psd",
 		".appveyor.yml",
 		".editorconfig",
 		".github",
