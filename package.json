@@ -1,6 +1,6 @@
 {
 	"name": "marshmallow",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "README Parser – easy as marshmallow!",
 	"homepage": "https://cjpatoilo.com/marshmallow",
 	"repository": "cjpatoilo/marshmallow",
@@ -24,6 +24,7 @@
 	],
 	"dependencies": {
 		"fs-extra": "^5.0.0",
+		"html-minifier": "^3.5.9",
 		"markdown-to-html": "0.0.13",
 		"psd": "^3.2.0",
 		"rasper": "latest"
@@ -42,8 +43,7 @@
 		"node": ">=6"
 	},
 	"scripts": {
-		"docs": "node index -o docs -i artwork.psd -m -f && boeing docs && rimraf docs",
-		"prepush": "npm run docs",
+		"prepush": "node index -o docs -i artwork.psd -f && boeing docs && rimraf docs",
 		"precommit": "npm t",
 		"test": "nyc ava && eslint . -c styled --ignore-path .gitignore && editorconfig-tools check ."
 	}

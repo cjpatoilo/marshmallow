@@ -4,6 +4,7 @@ const { existsSync } = require('fs')
 const { basename, dirname, extname, resolve } = require('path')
 const rasper = require('rasper')
 const { Markdown } = require('markdown-to-html')
+const { minify } = require('html-minifier')
 const { outputFile } = require('fs-extra')
 const { open } = require('psd')
 const { version } = require('./package.json')
@@ -109,11 +110,11 @@ ${data}
 		.replaceAll('&gt;', '>')
 		.replaceAll('&quot;', '"')
 		.replaceAll('.psd', '.png') // fixit
-		.replaceAll('\n\n', '')
-		.replaceAll(config.minify, '')
 		.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
 
-	outputFile(config.output, html, err => err ? error('[error] Error!') : copyImage(config.image, config.output))
+	outputFile(config.output, minify(html, config.minify), err => {
+		err ? error('[error] Error!') : copyImage(config.image, config.output)
+	})
 }
 
 function copyImage (input, output) {
@@ -141,12 +142,17 @@ function output (value) {
 }
 
 function getConfig (options = {}) {
+	const minify = {
+		collapseBooleanAttributes: true,
+		removeComments: true,
+		collapseWhitespace: true
+	}
 	return {
 		help: options.help || options.h || false,
 		version: options.version || options.v || false,
 		output: output(options.output || options.o || 'index.html'),
 		readme: options.readme || options.r || 'README.md',
-		minify: options.minify || options.m ? '\n' : '',
+		minify: options.minify || options.m ? minify : {},
 		image: options.image || options.i || 'https://cjpatoilo.com/marshmallow/artwork.png',
 		title: options.title || options.t || 'Marshmallow',
 		description: options.description || options.d || 'README Parser – easy as marshmallow!',
