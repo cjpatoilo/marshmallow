@@ -108,6 +108,7 @@ ${data}
 		.replaceAll('&lt;', '<')
 		.replaceAll('&gt;', '>')
 		.replaceAll('&quot;', '"')
+		.replaceAll('.psd', '.png') // fixit
 		.replaceAll('\n\n', '')
 		.replaceAll(config.minify, '')
 		.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
@@ -146,7 +147,7 @@ function getConfig (options = {}) {
 		output: output(options.output || options.o || 'index.html'),
 		readme: options.readme || options.r || 'README.md',
 		minify: options.minify || options.m ? '\n' : '',
-		image: options.image || options.i || 'https://cjpatoilo.com/marshmallow/thumbnail.png',
+		image: options.image || options.i || 'https://cjpatoilo.com/marshmallow/artwork.png',
 		title: options.title || options.t || 'Marshmallow',
 		description: options.description || options.d || 'README Parser – easy as marshmallow!',
 		force: options.force || options.f
