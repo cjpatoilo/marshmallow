@@ -1,4 +1,4 @@
-# Marshmallow
+<a align="center" href="https://cjpatoilo.com/marshmallow"><img width="100%" src="https://cjpatoilo.com/marshmallow/images/thumbnail.png" alt="README Parser – easy as marshmallow!"></a>
 
 > README Parser – easy as marshmallow!
 
@@ -44,10 +44,13 @@ npx marshmallow
 
 	Options:
 		-h, --help              Display help information
-		-v, --version           Output Initify version
+		-v, --version           Output version
 		-o, --output            Set output
 		-r, --readme            Set README.md file
-		-m, --minify            Set description
+		-m, --minify            Minify HTML
+		-i, --image             Set image
+		-t, --title             Set title
+		-d, --description       Set description
 		-f, --force             Force overwrite
 
 	Examples:
