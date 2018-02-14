@@ -40,9 +40,11 @@ npx marshmallow
 
 ```
 	Usage:
+
 		$ marshmallow [<options>]
 
 	Options:
+
 		-h, --help              Display help information
 		-v, --version           Output version
 		-o, --output            Set output
@@ -54,13 +56,18 @@ npx marshmallow
 		-f, --force             Force overwrite
 
 	Examples:
+
 		$ marshmallow
-		$ marshmallow --output documentation // index.html
+		$ marshmallow --output documentation // documentation/index.html
 		$ marshmallow --output docs/index.html
 
 	Default settings when no options:
+
 		$ marshmallow --output index.html --readme README.md --minify true
 ```
+
+Note: Has PSD support. When
+
 
 ## Contributing
 
