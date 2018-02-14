@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { existsSync } = require('fs')
 const { extname, resolve } = require('path')
 const rasper = require('rasper')
