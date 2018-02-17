@@ -53,6 +53,7 @@ npx marshmallow
 		-i, --image             Set image
 		-t, --title             Set title
 		-d, --description       Set description
+		-t, --color             Set color theme
 		-f, --force             Force overwrite
 
 	Examples:
@@ -66,7 +67,7 @@ npx marshmallow
 		$ marshmallow --output index.html --readme README.md --minify true
 ```
 
-Note: Has PSD support. When
+Note: Has PSD support.
 
 
 ## Contributing
