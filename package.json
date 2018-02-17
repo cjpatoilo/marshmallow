@@ -1,6 +1,6 @@
 {
 	"name": "marshmallow",
-	"version": "0.3.2",
+	"version": "0.4.0",
 	"description": "README Parser – easy as marshmallow!",
 	"homepage": "https://cjpatoilo.com/marshmallow",
 	"repository": "cjpatoilo/marshmallow",
@@ -31,9 +31,9 @@
 	},
 	"devDependencies": {
 		"ava": "^0.25.0",
-		"boeing": "0.0.1",
+		"boeing": "^0.1.0",
 		"editorconfig-tools": "^0.1.1",
-		"eslint": "^4.17.0",
+		"eslint": "^4.18.0",
 		"eslint-config-styled": "0.0.2",
 		"husky": "^0.14.3",
 		"nyc": "^11.4.1",
