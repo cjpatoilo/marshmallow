@@ -54,6 +54,7 @@ npx marshmallow
 		-t, --title             Set title
 		-d, --description       Set description
 		-t, --color             Set color theme
+		-t, --url               Set homepage
 		-f, --force             Force overwrite
 
 	Examples:
