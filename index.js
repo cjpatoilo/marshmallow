@@ -1,59 +1,15 @@
-#!/usr/bin/env node
 const { exec } = require('child_process')
 const { existsSync } = require('fs')
 const { basename, dirname, extname, resolve } = require('path')
-const rasper = require('rasper')
 const { Markdown } = require('markdown-to-html')
 const { minify } = require('html-minifier')
 const { outputFile } = require('fs-extra')
 const { open } = require('psd')
-const { version } = require('./package.json')
-const { error, info, warn } = console
-
+const { error, warn } = console
 const markdown = new Markdown()
-const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
 
-if (require.main === module) marshmallow(options)
-
-function marshmallow (options = {}) {
+module.exports = (options = {}) => {
 	const config = getConfig(options)
-
-	if (config.help) {
-		info(`
-Usage:
-
-  $ marshmallow [<options>]
-
-Options:
-
-  -h, --help              Display help information
-  -v, --version           Output version
-  -o, --output            Set output
-  -r, --readme            Set README.md file
-  -m, --minify            Minify HTML
-  -i, --image             Set image
-  -t, --title             Set title
-  -d, --description       Set description
-  -c, --color             Set color theme
-  -f, --force             Force overwrite
-
-Examples:
-
-  $ marshmallow
-  $ marshmallow --output documentation // index.html
-  $ marshmallow --output docs/index.html
-
-Default settings when no options:
-
-  $ marshmallow --output index.html --readme README.md --minify true
-		`)
-		process.exit(2)
-	}
-
-	if (config.version) {
-		info('v' + version)
-		process.exit(2)
-	}
 
 	if (!existsSync(config.readme)) {
 		error('[error] README.md no exist!')
@@ -112,6 +68,7 @@ ${data}
 </body>
 </html>
 	`
+		.trim()
 		.replaceAll('&lt;', '<')
 		.replaceAll('&gt;', '>')
 		.replaceAll('&quot;', '"')
@@ -158,8 +115,6 @@ function getConfig (options = {}) {
 		collapseWhitespace: true
 	}
 	return {
-		help: options.help || options.h || false,
-		version: options.version || options.v || false,
 		output: output(options.output || options.o || 'index.html'),
 		readme: options.readme || options.r || 'README.md',
 		minify: options.minify || options.m ? minify : {},
