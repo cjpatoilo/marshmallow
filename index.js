@@ -1,59 +1,16 @@
-#!/usr/bin/env node
 const { exec } = require('child_process')
 const { existsSync } = require('fs')
 const { basename, dirname, extname, resolve } = require('path')
-const rasper = require('rasper')
 const { Markdown } = require('markdown-to-html')
 const { minify } = require('html-minifier')
 const { outputFile } = require('fs-extra')
 const { open } = require('psd')
-const { version } = require('./package.json')
-const { error, info, warn } = console
-
+const { description, homepage } = require('./package.json')
+const { error, warn } = console
 const markdown = new Markdown()
-const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
 
-if (require.main === module) marshmallow(options)
-
-function marshmallow (options = {}) {
+module.exports = (options = {}) => {
 	const config = getConfig(options)
-
-	if (config.help) {
-		info(`
-Usage:
-
-  $ marshmallow [<options>]
-
-Options:
-
-  -h, --help              Display help information
-  -v, --version           Output version
-  -o, --output            Set output
-  -r, --readme            Set README.md file
-  -m, --minify            Minify HTML
-  -i, --image             Set image
-  -t, --title             Set title
-  -d, --description       Set description
-  -c, --color             Set color theme
-  -f, --force             Force overwrite
-
-Examples:
-
-  $ marshmallow
-  $ marshmallow --output documentation // index.html
-  $ marshmallow --output docs/index.html
-
-Default settings when no options:
-
-  $ marshmallow --output index.html --readme README.md --minify true
-		`)
-		process.exit(2)
-	}
-
-	if (config.version) {
-		info('v' + version)
-		process.exit(2)
-	}
 
 	if (!existsSync(config.readme)) {
 		error('[error] README.md no exist!')
@@ -83,21 +40,21 @@ function generate (data, config) {
 <meta property="og:site_name" content="${config.title}">
 <meta property="og:title" content="${config.title}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="/">
+<meta property="og:url" content="${config.url}">
 <meta property="article:published_time" content="${new Date().toISOString()}">
 <meta property="article:author" content="${config.title}">
 <meta property="article:section" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:domain" content="${config.title}">
-<meta name="twitter:url" content="/">
-<meta name="twitter:site" content="/">
+<meta name="twitter:url" content="${config.url}">
+<meta name="twitter:site" content="${config.url}">
 <meta name="twitter:creator" content="${config.title}">
 <meta name="twitter:title" content="${config.title}">
 <meta name="twitter:description" content="${config.description}">
 <meta name="twitter:image:src" content="${config.image}">
 <title>${config.title}</title>
-<base href="/">
-<link rel="canonical" href="/">
+<base href="${config.url}">
+<link rel="canonical" href="${config.url}">
 <link rel="image_src" href="${config.image}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
@@ -112,6 +69,7 @@ ${data}
 </body>
 </html>
 	`
+		.trim()
 		.replaceAll('&lt;', '<')
 		.replaceAll('&gt;', '>')
 		.replaceAll('&quot;', '"')
@@ -158,15 +116,14 @@ function getConfig (options = {}) {
 		collapseWhitespace: true
 	}
 	return {
-		help: options.help || options.h || false,
-		version: options.version || options.v || false,
 		output: output(options.output || options.o || 'index.html'),
 		readme: options.readme || options.r || 'README.md',
 		minify: options.minify || options.m ? minify : {},
 		image: options.image || options.i || 'https://cjpatoilo.com/marshmallow/artwork.png',
 		title: options.title || options.t || 'Marshmallow',
-		description: options.description || options.d || 'README Parser – easy as marshmallow!',
+		description: options.description || options.d || description || 'README Parser – easy as marshmallow!',
 		color: colorCheck(options.color || options.c) || '#d1d1d1',
+		url: options.url || options.u || homepage || '/',
 		force: options.force || options.f
 	}
 }

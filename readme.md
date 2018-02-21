@@ -1,4 +1,4 @@
-<a align="center" href="https://cjpatoilo.com/marshmallow"><img width="100%" src="https://cjpatoilo.com/marshmallow/artwork.png" alt="README Parser – easy as marshmallow!"></a>
+<a align="center" href="https://github.com/cjpatoilo/marshmallow"><img width="100%" src="https://cjpatoilo.com/marshmallow/artwork.png" alt="README Parser – easy as marshmallow!"></a>
 
 > README Parser – easy as marshmallow!
 
@@ -30,7 +30,7 @@ $ npm install marshmallow
 $ yarn add marshmallow
 ```
 
-**Run with npx (without installing!)**
+**Run with npx (without installing)**
 
 ```sh
 npx marshmallow
@@ -54,6 +54,7 @@ npx marshmallow
 		-t, --title             Set title
 		-d, --description       Set description
 		-t, --color             Set color theme
+		-t, --url               Set homepage
 		-f, --force             Force overwrite
 
 	Examples:
