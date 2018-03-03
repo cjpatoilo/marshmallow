@@ -5,17 +5,11 @@ const { Markdown } = require('markdown-to-html')
 const { minify } = require('html-minifier')
 const { outputFile } = require('fs-extra')
 const { open } = require('psd')
-const { description, homepage } = require('./package.json')
 const { error, warn } = console
 const markdown = new Markdown()
 
 module.exports = (options = {}) => {
 	const config = getConfig(options)
-
-	if (!existsSync(config.readme)) {
-		error('[error] README.md no exist!')
-		process.exit(2)
-	}
 
 	if (!config.force && existsSync(config.output)) {
 		warn('[warn] File output exist!')
@@ -105,6 +99,17 @@ function output (value) {
 	return extname(value).length ? resolve(dirname(value), 'index.html') : resolve(value, 'index.html')
 }
 
+function readmeCheck (value) {
+	const readme = resolve(__dirname, value)
+
+	if (!existsSync(readme)) {
+		error(`[error] ${readme} no exist!`)
+		process.exit(2)
+	}
+
+	return readme
+}
+
 function colorCheck (value = '') {
 	return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(value[0] === '#' ? value : '#' + value)
 }
@@ -115,15 +120,16 @@ function getConfig (options = {}) {
 		removeComments: true,
 		collapseWhitespace: true
 	}
+
 	return {
 		output: output(options.output || options.o || 'index.html'),
-		readme: options.readme || options.r || 'README.md',
+		readme: readmeCheck(options.readme || options.r || 'readme.md'),
 		minify: options.minify || options.m ? minify : {},
 		image: options.image || options.i || 'https://cjpatoilo.com/marshmallow/artwork.png',
 		title: options.title || options.t || 'Marshmallow',
-		description: options.description || options.d || description || 'README Parser – easy as marshmallow!',
+		description: options.description || options.d || 'README Parser – easy as marshmallow!',
 		color: colorCheck(options.color || options.c) || '#d1d1d1',
-		url: options.url || options.u || homepage || '/',
+		url: options.url || options.u || '/',
 		force: options.force || options.f
 	}
 }
