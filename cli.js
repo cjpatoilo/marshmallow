@@ -1,8 +1,11 @@
 #!/usr/bin/env node
+const { existsSync } = require('fs')
+const { resolve } = require('path')
 const rasper = require('rasper')
 const app = require('./')
 const { version } = require('./package.json')
 const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
+const mainPackage = resolve(__dirname, 'package.json')
 
 if (options.help || options.h) {
 	console.info(`
@@ -40,6 +43,15 @@ Default settings when no options:
 if (options.version || options.v) {
 	console.info('v' + version)
 	process.exit(1)
+}
+
+if (existsSync(mainPackage)) {
+	const { description, homepage } = require(mainPackage)
+
+	if (!options.description) options.description = description
+	if (!options.d) options.d = description
+	if (!options.url) options.url = homepage
+	if (!options.u) options.u = homepage
 }
 
 if (require.main === module) {
