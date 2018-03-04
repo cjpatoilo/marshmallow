@@ -100,14 +100,12 @@ function output (value) {
 }
 
 function readmeCheck (value) {
-	const readme = resolve(__dirname, value)
-
-	if (!existsSync(readme)) {
-		error(`[error] ${readme} no exist!`)
+	if (!existsSync(value)) {
+		error(`[error] ${value} no exist!`)
 		process.exit(2)
 	}
 
-	return readme
+	return value
 }
 
 function colorCheck (value = '') {
