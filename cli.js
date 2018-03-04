@@ -5,7 +5,7 @@ const rasper = require('rasper')
 const app = require('./')
 const { version } = require('./package.json')
 const options = process.argv[0].match(/node/i) ? rasper(process.argv.slice(2)) : rasper()
-const mainPackage = resolve(__dirname, 'package.json')
+const mainPackage = resolve(__dirname, '../../package.json')
 
 if (options.help || options.h) {
 	console.info(`
