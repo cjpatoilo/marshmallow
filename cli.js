@@ -48,9 +48,7 @@ if (options.version || options.v) {
 if (existsSync(mainPackage)) {
 	const { description, homepage } = require(mainPackage)
 
-	if (!options.description) options.description = description
 	if (!options.d) options.d = description
-	if (!options.url) options.url = homepage
 	if (!options.u) options.u = homepage
 }
 
