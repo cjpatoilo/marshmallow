@@ -6,6 +6,7 @@
 	"repository": "cjpatoilo/marshmallow",
 	"license": "MIT",
 	"author": "CJ Patoilo <cjpatoilo@gmail.com>",
+	"private": false,
 	"bin": "cli.js",
 	"files": [
 		"cli.js",
@@ -27,28 +28,44 @@
 		".travis.yml"
 	],
 	"dependencies": {
-		"fs-extra": "^5.0.0",
-		"html-minifier": "^3.5.9",
+		"fs-extra": "^8.1.0",
+		"html-minifier": "^4.0.0",
 		"markdown-to-html": "0.0.13",
 		"psd": "^3.2.0",
 		"rasper": "latest"
 	},
 	"devDependencies": {
-		"ava": "^0.25.0",
+		"ava": "^2.4.0",
 		"boeing": "latest",
-		"editorconfig-tools": "^0.1.1",
-		"eslint": "^4.18.1",
-		"eslint-config-styled": "0.0.2",
-		"husky": "^0.14.3",
-		"nyc": "^11.4.1",
-		"rimraf": "^2.6.2"
-	},
-	"engines": {
-		"node": ">=6"
+		"husky": "^3.0.9",
+		"lint-staged": "^9.4.2",
+		"inject-ga": "^0.2.4",
+		"nyc": "^14.1.1",
+		"prettier-standard": "^15.0.1",
+		"rimraf": "^3.0.0"
 	},
 	"scripts": {
-		"prepush": "node cli -o docs -i artwork.psd -f && boeing docs && rimraf docs",
-		"precommit": "npm t",
-		"test": "nyc ava && eslint . -c styled --ignore-path .gitignore && editorconfig-tools check ."
+		"deploy": "node cli -o docs -i artwork.psd -f && inject-ga docs/index.html -o docs/index.html -c 'UA-24389952-13' && boeing docs && rimraf docs",
+		"lint": "prettier-standard --check",
+		"test": "nyc ava"
+	},
+	"engines": {
+		"node": "^12.13.0"
+	},
+	"prettier": {
+		"jsxSingleQuote": false,
+		"trailingComma": "all"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"pre-push": "npm run deploy"
+		}
+	},
+	"lint-staged": {
+		"src/**/*": [
+			"prettier-standard --format",
+			"git add"
+		]
 	}
 }
