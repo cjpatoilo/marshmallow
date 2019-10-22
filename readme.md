@@ -1,4 +1,4 @@
-<a align="center" href="https://github.com/cjpatoilo/marshmallow"><img width="100%" src="https://cjpatoilo.com/marshmallow/artwork.png" alt="README Parser – easy as marshmallow!"></a>
+<a href="https://github.com/cjpatoilo/marshmallow"><img width="100%" src="https://cjpatoilo.com/marshmallow/artwork.png" alt="README Parser – easy as marshmallow!"></a>
 
 > README Parser – easy as marshmallow!
 
