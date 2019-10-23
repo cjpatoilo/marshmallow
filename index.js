@@ -24,32 +24,40 @@ function generate (data, config) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
-<meta name="robots" content="index, follow">
-<meta name="author" content="${config.title}">
-<meta name="description" content="${config.description}">
-<meta property="og:description" content="${config.description}">
-<meta property="og:image" content="${config.image}">
-<meta property="og:locale" content="en">
-<meta property="og:site_name" content="${config.title}">
-<meta property="og:title" content="${config.title}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="${config.url}">
+<meta name="msapplication-TileColor" content="${config.color}" />
+<meta name="msapplication-TileImage" content="${config.image}" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="${config.color}" />
+<meta name="apple-mobile-web-app-title" content="${config.title}" />
+<meta name="application-name" content="${config.title}" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="theme-color" content="${config.color}" />
+<meta name="robots" content="index,follow" />
+<meta name="author" content="${config.author}" />
+<meta name="description" content="${config.description}" />
+<meta property="og:description" content="${config.description}" />
+<meta property="og:image" content="${config.image}" />
+<meta property="og:locale" content="en" />
+<meta property="og:site_name" content="${config.title}" />
+<meta property="og:title" content="${config.title}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="${config.url}" />
 <meta property="article:published_time" content="${new Date().toISOString()}">
-<meta property="article:author" content="${config.title}">
-<meta property="article:section" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:domain" content="${config.title}">
-<meta name="twitter:url" content="${config.url}">
-<meta name="twitter:site" content="${config.url}">
-<meta name="twitter:creator" content="${config.title}">
-<meta name="twitter:title" content="${config.title}">
-<meta name="twitter:description" content="${config.description}">
-<meta name="twitter:image:src" content="${config.image}">
+<meta property="article:author" content="${config.author}" />
+<meta property="article:section" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:domain" content="${config.title}" />
+<meta name="twitter:url" content="${config.url}" />
+<meta name="twitter:site" content="${config.url}" />
+<meta name="twitter:creator" content="${config.author}" />
+<meta name="twitter:title" content="${config.title}" />
+<meta name="twitter:description" content="${config.description}" />
+<meta name="twitter:image:src" content="${config.image}" />
 <title>${config.title}</title>
 <base href="${config.url}">
 <link rel="canonical" href="${config.url}">
-<link rel="image_src" href="${config.image}">
+<link rel="apple-touch-icon" href="${config.image}" />
+<link rel="shortcut icon" href="${config.image}" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
