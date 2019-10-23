@@ -20,6 +20,7 @@ Options:
   -o, --output            Set output
   -r, --readme            Set README.md file
   -m, --minify            Minify HTML
+  -a, --author            Set author
   -i, --image             Set image
   -t, --title             Set title
   -d, --description       Set description
@@ -46,8 +47,9 @@ if (options.version || options.v) {
 }
 
 if (existsSync(mainPackage)) {
-	const { description, homepage } = require(mainPackage)
+	const { author, description, homepage } = require(mainPackage)
 
+	if (!options.a) options.a = author
 	if (!options.d) options.d = description
 	if (!options.u) options.u = homepage
 }
@@ -55,4 +57,3 @@ if (existsSync(mainPackage)) {
 if (require.main === module) {
 	app(options)
 }
-

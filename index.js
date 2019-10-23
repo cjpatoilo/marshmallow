@@ -131,6 +131,7 @@ function getConfig (options = {}) {
 		output: output(options.output || options.o || 'index.html'),
 		readme: readmeCheck(options.readme || options.r || 'readme.md'),
 		minify: options.minify || options.m ? minify : {},
+		author: options.author || options.a || options.title || options.t || 'Unknown',
 		image: options.image || options.i || 'https://cjpatoilo.com/marshmallow/artwork.png',
 		title: options.title || options.t || 'Marshmallow',
 		description: options.description || options.d || 'README Parser – easy as marshmallow!',
