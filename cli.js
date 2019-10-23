@@ -20,6 +20,7 @@ Options:
   -o, --output            Set output
   -r, --readme            Set README.md file
   -m, --minify            Minify HTML
+  -a, --author            Set author
   -i, --image             Set image
   -t, --title             Set title
   -d, --description       Set description
@@ -46,13 +47,24 @@ if (options.version || options.v) {
 }
 
 if (existsSync(mainPackage)) {
-	const { description, homepage } = require(mainPackage)
+  const { author, description, homepage, name } = require(mainPackage)
 
-	if (!options.d) options.d = description
-	if (!options.u) options.u = homepage
+	if (!options.a || !options.author) options.author = author
+	if (!options.d || !options.description) options.description = description
+	if (!options.u || !options.url) options.url = homepage
+	if (!options.t || !options.title) options.title = parserPackageName(name)
+
+  function parserPackageName (name = '') {
+    return name
+      .toLowerCase()
+      .replace(new RegExp('-', 'g'), ' ')
+      .replace(new RegExp('_', 'g'), ' ')
+      .split(' ')
+      .map(word => `${word.charAt(0).toUpperCase()}${word.substring(1)}`)
+      .join(' ')
+  }
 }
 
 if (require.main === module) {
 	app(options)
 }
-
