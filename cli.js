@@ -47,11 +47,22 @@ if (options.version || options.v) {
 }
 
 if (existsSync(mainPackage)) {
-	const { author, description, homepage } = require(mainPackage)
+  const { author, description, homepage, name } = require(mainPackage)
 
 	if (!options.a) options.a = author
 	if (!options.d) options.d = description
 	if (!options.u) options.u = homepage
+	if (!options.t) options.t = parserPackageName(name)
+
+  function parserPackageName (name = '') {
+    return name
+      .toLowerCase()
+      .replace(new RegExp('-', 'g'), ' ')
+      .replace(new RegExp('_', 'g'), ' ')
+      .split(' ')
+      .map(word => `${word.charAt(0).toUpperCase()}${word.substring(1)}`)
+      .join(' ')
+  }
 }
 
 if (require.main === module) {
