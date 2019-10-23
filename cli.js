@@ -49,10 +49,10 @@ if (options.version || options.v) {
 if (existsSync(mainPackage)) {
   const { author, description, homepage, name } = require(mainPackage)
 
-	if (!options.a) options.a = author
-	if (!options.d) options.d = description
-	if (!options.u) options.u = homepage
-	if (!options.t) options.t = parserPackageName(name)
+	if (!options.a || !options.author) options.author = author
+	if (!options.d || !options.description) options.description = description
+	if (!options.u || !options.url) options.url = homepage
+	if (!options.t || !options.title) options.title = parserPackageName(name)
 
   function parserPackageName (name = '') {
     return name
