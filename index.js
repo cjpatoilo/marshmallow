@@ -1,9 +1,9 @@
 const { exec } = require('child_process')
 const { existsSync } = require('fs')
-const { basename, dirname, extname, resolve } = require('path')
-const { Markdown } = require('markdown-to-html')
-const { minify } = require('html-minifier')
 const { outputFile } = require('fs-extra')
+const { minify } = require('html-minifier')
+const { Markdown } = require('markdown-to-html')
+const { basename, dirname, extname, resolve } = require('path')
 const { open } = require('psd')
 const { error, warn } = console
 const markdown = new Markdown()
