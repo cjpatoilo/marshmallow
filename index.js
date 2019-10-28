@@ -72,9 +72,9 @@ ${data}
 </html>
 	`
 		.trim()
-		.replaceAll('&lt;', '<')
-		.replaceAll('&gt;', '>')
-		.replaceAll('&quot;', '"')
+		// .replaceAll('&lt;', '<')
+		// .replaceAll('&gt;', '>')
+		// .replaceAll('&quot;', '"')
 		.replaceAll('.psd', '.png') // fixit
 		.replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
 
