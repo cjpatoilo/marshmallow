@@ -74,11 +74,11 @@ ${data}
 </html>
 	`
     .trim()
-    // .replaceAll('&lt;', '<')
-    // .replaceAll('&gt;', '>')
-    // .replaceAll('&quot;', '"')
-    .replaceAll('.psd', '.png') // fixit
-    .replaceAll('<h2 id="license">License</h2>', '<h2 id="license"></h2>')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/.psd/g, '.png')
+    .replace(/<h2 id="license">License<\/h2>/g, '<h2 id="license"></h2>')
 
   outputFile(config.output, minify(html, config.minify), err => {
     err ? error('[error] Error!') : copyImage(config.image, config.output)
@@ -156,13 +156,4 @@ function getConfig (options = {}) {
     url: options.url || options.u || '/',
     force: options.force || options.f,
   }
-}
-
-/* eslint-disable */
-String.prototype.replaceAll = function (find, replace) {
-  const target = this
-  return target.replace(
-    new RegExp(find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'), 'g'),
-    replace,
-  )
 }
