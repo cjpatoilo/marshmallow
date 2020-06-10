@@ -39,7 +39,7 @@ Examples:
 Default settings when no options:
 
   $ marshmallow --output index.html --readme README.md --minify true
-	`)
+`)
   process.exit(1)
 }
 
