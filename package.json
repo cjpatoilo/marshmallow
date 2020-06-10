@@ -1,6 +1,6 @@
 {
   "name": "marshmallow",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "README Parser – easy as marshmallow!",
   "homepage": "https://cjpatoilo.com/marshmallow",
   "repository": "cjpatoilo/marshmallow",
@@ -18,14 +18,6 @@
     "repository",
     "starterkit",
     "github"
-  ],
-  "ignore": [
-    "artwork.psd",
-    ".appveyor.yml",
-    ".editorconfig",
-    ".github",
-    ".gitignore",
-    ".travis.yml"
   ],
   "dependencies": {
     "fs-extra": "^9.0.1",
