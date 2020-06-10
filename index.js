@@ -77,6 +77,7 @@ ${data}
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
+    .replace(/<\/a><br><a /g, '</a> <a ')
     .replace(/.psd/g, '.png')
     .replace(/<h2 id="license">License<\/h2>/g, '<h2 id="license"></h2>')
 
