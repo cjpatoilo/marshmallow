@@ -10,11 +10,9 @@
 [![Download Status](https://img.shields.io/npm/dt/marshmallow.svg)](https://www.npmjs.com/package/marshmallow)
 [![Gitter Chat](https://img.shields.io/badge/gitter-join_the_chat-4cc61e.svg)](https://gitter.im/cjpatoilo/marshmallow)
 
-
 ## Why it's awesome
 
 Marshmallow create a minimalist documentation using Milligram. Ease to use. No config. No headache. Parser `README.md` to `index.html` so easy to prepare as marshmallow!
-
 
 ## Install
 
@@ -39,43 +37,41 @@ npx marshmallow
 ## Usage
 
 ```
-	Usage:
+Usage:
 
-		$ marshmallow [<options>]
+	$ marshmallow [<options>]
 
-	Options:
+Options:
 
-		-h, --help              Display help information
-		-v, --version           Output version
-		-o, --output            Set output
-		-r, --readme            Set README.md file
-		-m, --minify            Minify HTML
-		-i, --image             Set image
-		-t, --title             Set title
-		-d, --description       Set description
-		-t, --color             Set color theme
-		-t, --url               Set homepage
-		-f, --force             Force overwrite
+	-h, --help              Display help information
+	-v, --version           Output version
+	-o, --output            Set output
+	-r, --readme            Set README.md file
+	-m, --minify            Minify HTML
+	-i, --image             Set image
+	-t, --title             Set title
+	-d, --description       Set description
+	-t, --color             Set color theme
+	-t, --url               Set homepage
+	-f, --force             Force overwrite
 
-	Examples:
+Examples:
 
-		$ marshmallow
-		$ marshmallow --output documentation // documentation/index.html
-		$ marshmallow --output docs/index.html
+	$ marshmallow
+	$ marshmallow --output documentation // documentation/index.html
+	$ marshmallow --output docs/index.html
 
-	Default settings when no options:
+Default settings when no options:
 
-		$ marshmallow --output index.html --readme README.md --minify true
+	$ marshmallow --output index.html --readme README.md --minify true
 ```
 
 Note: Has PSD support.
 
-
 ## Contributing
 
-Want to contribute? Follow these [recommendations](.github/contributing.md).
-
+Want to contribute? Follow these [recommendations](https://github.com/cjpatoilo/marshmallow/contribute).
 
 ## License
 
-Designed with ♥ by [CJ Patoilo](https://twitter.com/cjpatoilo). Licensed under the [MIT License](license).
+Designed with ♥ by [CJ Patoilo](https://twitter.com/cjpatoilo). Licensed under the [MIT License](https://cjpatoilo.com/license).
