@@ -59,8 +59,8 @@ function generate (data, config) {
 <link rel="apple-touch-icon" href="${config.image}" />
 <link rel="shortcut icon" href="${config.image}" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.min.css">
 <style>h2{font-size:2.8rem;line-height:1.3;}h2:nth-child(n+1){margin-top:15.0rem;}.container{max-width:80.0rem;}</style>
 <style>:root{--main-color:${
     config.color
@@ -72,7 +72,7 @@ ${data}
 </div>
 </body>
 </html>
-	`
+`
     .trim()
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
