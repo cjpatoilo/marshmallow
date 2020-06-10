@@ -39,31 +39,31 @@ npx marshmallow
 ```
 Usage:
 
-	$ marshmallow [<options>]
+  $ marshmallow [<options>]
 
 Options:
 
-	-h, --help              Display help information
-	-v, --version           Output version
-	-o, --output            Set output
-	-r, --readme            Set README.md file
-	-m, --minify            Minify HTML
-	-i, --image             Set image
-	-t, --title             Set title
-	-d, --description       Set description
-	-t, --color             Set color theme
-	-t, --url               Set homepage
-	-f, --force             Force overwrite
+  -h, --help              Display help information
+  -v, --version           Output version
+  -o, --output            Set output
+  -r, --readme            Set README.md file
+  -m, --minify            Minify HTML
+  -i, --image             Set image
+  -t, --title             Set title
+  -d, --description       Set description
+  -t, --color             Set color theme
+  -t, --url               Set homepage
+  -f, --force             Force overwrite
 
 Examples:
 
-	$ marshmallow
-	$ marshmallow --output documentation // documentation/index.html
-	$ marshmallow --output docs/index.html
+  $ marshmallow
+  $ marshmallow --output documentation // documentation/index.html
+  $ marshmallow --output docs/index.html
 
 Default settings when no options:
 
-	$ marshmallow --output index.html --readme README.md --minify true
+  $ marshmallow --output index.html --readme README.md --minify true
 ```
 
 Note: Has PSD support.
