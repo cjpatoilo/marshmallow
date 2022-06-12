@@ -20,7 +20,7 @@
     "github"
   ],
   "dependencies": {
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^10.0.0",
     "html-minifier": "^4.0.0",
     "markdown-to-html": "0.0.13",
     "psd": "^3.2.0",
